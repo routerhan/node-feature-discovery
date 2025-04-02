@@ -295,7 +295,10 @@ func getHypervisor() (string, error) {
 			break
 		}
 	}
-
+	// Replace forbidden symbols
+	fullRegex := regexp.MustCompile("[^-A-Za-z0-9_.]+")
+	hypervisor := fullRegex.ReplaceAllString(hypervisor, "_")
+	
 	return hypervisor, nil
 }
 
